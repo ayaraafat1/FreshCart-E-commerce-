@@ -1,0 +1,27 @@
+.card 
+{
+    
+    button{
+    position: absolute;
+    transition: all 0.7s ease-in;
+    transform: translateY(120%);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    }
+    &:hover{
+        button
+            {
+                transform: translateY(0);
+
+        }
+    }
+    
+}
+
+
+::ng-deep .owl-theme .owl-dots .owl-dot.active span, 
+::ng-deep .owl-theme .owl-dots .owl-dot:hover span {
+    background-color: #16a34a !important; // Change active dot color
+}
+

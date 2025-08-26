@@ -1,0 +1,144 @@
+<!-- ? Main slider -->
+<section class="overflow-hidden w-full">
+  <div class="grid grid-cols-1 md:grid-cols-[70%_30%]">
+    <div>
+      <owl-carousel-o [options]="customMainSlider">
+        <ng-template carouselSlide
+          ><img src="/images/img1.avif" alt="slider" class="w-full h-[300px]"
+        /></ng-template>
+
+        <ng-template carouselSlide
+          ><img src="/images/img2.avif" alt="slider" class="w-full h-[300px]"
+        /></ng-template>
+        <ng-template carouselSlide
+          ><img src="/images/img3.avif" alt="slider" class="w-full h-[300px]"
+        /></ng-template>
+        <ng-template carouselSlide
+          ><img src="/images/img4.avif" alt="slider" class="w-full h-[300px]"
+        /></ng-template>
+        <ng-template carouselSlide
+          ><img src="/images/img5.avif" alt="slider" class="w-full h-[300px]"
+        /></ng-template>
+        <ng-template carouselSlide
+          ><img src="/images/img6.avif" alt="slider" class="w-full h-[300px]"
+        /></ng-template>
+      </owl-carousel-o>
+    </div>
+    <div class="hidden md:block">
+      <img src="/images/clothes-3.jpg" alt="clothes" class="w-full h-[150px]" />
+      <img
+        src="/images/grocery-banner.png"
+        alt="clothes"
+        class="w-full h-[150px]"
+      />
+    </div>
+  </div>
+</section>
+
+<!-- ? Popular Category slider -->
+<section class="container px-10">
+  <h2 class="text-3xl md:text-[32px] text-green-600 font-medium capitalize">
+    Popular Categories
+  </h2>
+  <owl-carousel-o [options]="customOptions">
+    @for (cat of categoriesData; track cat._id) {
+    <ng-template carouselSlide>
+      <div class="cursor-pointer" routerLink="/categories">
+        <img
+          [src]="cat.image"
+          [alt]="cat.name"
+          class="w-full border-2 h-[200px]"
+        />
+
+        <h3 class="text-base text-green-600 capitalize">{{ cat.name }}</h3>
+      </div>
+    </ng-template>
+    }
+  </owl-carousel-o>
+</section>
+
+<!-- ? Popular Products -->
+<section class="container px-10">
+  <div>
+    <h2 class="text-3xl md:text-[32px] text-green-600 font-medium capitalize">
+      Popular Products
+    </h2>
+    <div
+      class="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 md:gap-8"
+    >
+      @for (prod of productsData.slice(0,12); track prod.id) {
+      <div
+        class="card h-full relative p-2 rounded border border-transparent transition-all hover:border-gray-300"
+      >
+        <div [routerLink]="['/details', prod.id]">
+          <div class="card-img">
+            <div class="relative overflow-hidden">
+              <img
+                [src]="prod.imageCover"
+                [alt]="prod.title"
+                class="w-full h-[200px] object-contain"
+              />
+
+              <div>
+                <button
+                  class="uppercase w-full text-white bg-green-500 text-sm md:text-sm py-[5px] rounded-md border border-green-400 outline-none"
+                >
+                  <i class="fa-solid fa-cart-shopping"></i> Add To Cart
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="card-body px-2 py-0 pt-3 z-50">
+            <div class="flex justify-between items-center mb-[6px]">
+              <span class="text-sm font-medium"
+                ><i class="fa-solid fa-cube me-1 text-xs text-gray-700"></i>In
+                Stock</span
+              >
+              <!-- <span>
+            @if (!wishlistData.includes(product._id)) {
+            <i (click)="addFav(product._id)" class="fa-regular fa-heart cr"></i>
+            } @if(wishlistData.includes(product._id)) {
+            <i
+              (click)="removeFav(product._id)"
+              class="fa-solid fa-heart cr text-main"
+            ></i>
+            } -->
+              <span class="text-base">
+                <i class="fa-regular fa-heart"></i>
+              </span>
+            </div>
+            <h3
+              class="font-medium text-base hover:text-green-500 transition-all uppercase mb-1 pt-[10px] border-t"
+            >
+              {{ prod.title.split(" ", 2).join(" ") }}
+            </h3>
+            <h4 class="text-green-600 text-sm mb-1 capitalize">
+              {{ prod.category.name }}
+            </h4>
+            <div class="flex items-center justify-between text-sm">
+              <span>EGP {{ prod.price }} </span>
+              <div>
+                @for (star of [1,2,3,4,5].slice(0, prod.ratingsAverage); track
+                $index) {
+                <span>
+                  <i class="fas fa-star text-yellow-400 text-[10px]"></i>
+                </span>
+                } @for (star of [1,2,3,4,5].slice(0, 5 - prod.ratingsAverage);
+                track $index) {
+                <span>
+                  <i class="fa-regular fa-star text-yellow-400 text-[10px]"></i>
+                </span>
+                } @if (prod.ratingsAverage % 1 !== 0) {
+                <i
+                  class="fa-solid fa-star-half-stroke text-yellow-400 text-[10px]"
+                ></i>
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,112 @@
+<nav
+  class="bg-white border-gray-200 fixed top-0 z-[999] w-full shadow transition-all"
+>
+  <div
+    class="max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto px-5 py-7"
+    [class.scrolled]="isScrolled"
+  >
+    <a
+      href="https://flowbite.com/"
+      class="flex items-center space-x-3 rtl:space-x-reverse"
+    >
+      <img src="/images/freshcart-logo.svg" alt="freshcart-logo" />
+    </a>
+    @if (isLogin()) {
+    <button
+      (click)="toggleMenu()"
+      type="button"
+      class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+      aria-controls="navbar-default"
+      aria-expanded="false"
+    >
+      <span class="sr-only">Open main menu</span>
+      <svg
+        class="w-5 h-5"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 17 14"
+      >
+        <path
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M1 1h15M1 7h15M1 13h15"
+        />
+      </svg>
+    </button>
+    }
+
+    <div
+      [class]="{ hidden: !isMenuOpen(), block: isMenuOpen() }"
+      class="flex-grow w-full md:flex md:w-auto"
+      id="navbar-default"
+    >
+      @if(isLogin()){
+      <ul
+        class="md:ps-2 capitalize flex flex-col items-center md:p-0 mt-4 md:flex-row md:space-x-1 rtl:space-x-reverse md:mt-0"
+      >
+        <li>
+          <a
+            routerLink="/home"
+            routerLinkActive="bg-green-500 text-gray-50  rounded-md"
+            class="block py-1 px-2 rounded-md text-gray-700"
+            aria-current="page"
+            >home</a
+          >
+        </li>
+        <li>
+          <a
+            routerLink="/cart"
+            routerLinkActive="bg-green-500 text-gray-50  rounded-md"
+            class="block py-1 px-2 text-gray-700"
+            aria-current="page"
+            >cart</a
+          >
+        </li>
+        <li>
+          <a
+            routerLink="/products"
+            routerLinkActive="bg-green-500 text-gray-50  rounded-md"
+            class="block py-1 px-2 text-gray-700"
+            aria-current="page"
+            >products</a
+          >
+        </li>
+        <li>
+          <a
+            routerLink="/categories"
+            routerLinkActive="bg-green-500 text-gray-50 rounded-md"
+            class="block py-1 px-2 text-gray-700"
+            aria-current="page"
+            >categories</a
+          >
+        </li>
+        <li>
+          <a
+            routerLink="/brands"
+            routerLinkActive="bg-green-500 text-gray-50  rounded-md"
+            class="block py-1 px-2 text-gray-700"
+            aria-current="page"
+            >brands</a
+          >
+        </li>
+      </ul>
+      <ul
+        class="capitalize flex items-center ms-auto flex-col p-4 md:p-0 mt-4 rounded-lg md:flex-row md:space-x-1 rtl:space-x-reverse md:mt-0"
+      >
+        <li>
+          <a
+            role="button"
+            class="block py-1 px-2 rounded-md bg-green-500 text-gray-50"
+            aria-current="page"
+            (click)="authService.logOut()"
+            >SignOut</a
+          >
+        </li>
+      </ul>
+      }
+    </div>
+  </div>
+</nav>

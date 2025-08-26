@@ -1,0 +1,130 @@
+@if (productDetails) {
+<section class="container md:mx-10 md:px-10 py-10">
+  <div class="grid md:grid-cols-[30%_60%] md:ms-[10%] gap-8 justify-center">
+    <div class="product-imgs">
+      <div class="img-display overflow-hidden">
+        <div class="img-showcase flex w-full" #imgShowcase>
+          @for (img of productDetails.images; track $index) {
+          <img [src]="img" alt="shoe image" class="w-full block" />
+          }
+        </div>
+      </div>
+      <div class="img-select flex w-full">
+        @for (img of productDetails.images; track $index) {
+        <div class="img-item ms-0">
+          <a
+            [attr.data-id]="$index + 1"
+            (click)="onImageClick($index)"
+            class="cursor-pointer"
+          >
+            <img [src]="img" alt="shoe image" class="w-full block" />
+          </a>
+        </div>
+        }
+      </div>
+    </div>
+    <div>
+      <div class="flex justify-between items-center">
+        <h2
+          class="text-capitalize text-[28px] font-medium relative product-title"
+        >
+          {{ productDetails.title }}
+        </h2>
+        <!-- <span>
+                    @if (!wishlistData.includes(productDetails._id)) {
+                    <i
+                      (click)="addFav(detailsProduct._id)"
+                      class="fa-regular fa-heart text-main fa-xl cr"
+                    ></i>
+                    } @if (wishlistData.includes(detailsProduct._id)) {
+                    <i
+                      (click)="removeFav(detailsProduct._id)"
+                      class="fa-solid fa-heart text-main fa-xl cr"
+                    ></i>
+      
+                    }
+                  </span> -->
+      </div>
+      <div class="mt-3">
+        <div>
+          @for (star of [1,2,3,4,5].slice(0, productDetails.ratingsAverage);
+          track $index) {
+          <span>
+            <i class="fas fa-star text-yellow-400"></i>
+          </span>
+          } @for (star of [1,2,3,4,5].slice(0, 5 -
+          productDetails.ratingsAverage); track $index) {
+          <span>
+            <i class="fa-regular fa-star text-yellow-400"></i>
+          </span>
+          } @if (productDetails.ratingsAverage % 1 !== 0) {
+          <i class="fa-solid fa-star-half-stroke text-yellow-400"></i>
+          }
+          <span class="ms-1">{{ productDetails.ratingsAverage }}</span>
+        </div>
+      </div>
+      <p class="text-lg font-bold mt-1 mb-1">
+        Price:<span class="text-base text-green-500">
+          {{ productDetails.price }}EGP</span
+        >
+      </p>
+      <h3 class="text-2xl uppercase font-medium mt-3">about this item</h3>
+      <h4 class="text-gray-500 w-[60%] mt-1">
+        {{ productDetails.description }}
+      </h4>
+      <div class="mt-4">
+        <p class="text-base capitalize font-medium">
+          <i class="fa-solid fa-circle-check text-green-400 me-2"></i>Brand :
+          <span class="text-gray-500"> {{ productDetails.brand.name }}</span>
+        </p>
+        <p class="text-base capitalize font-medium mt-1">
+          <i class="fa-solid fa-circle-check text-green-400 me-2"></i>category :
+          <span class="text-gray-500"> {{ productDetails.category.name }}</span>
+        </p>
+        <p class="text-base capitalize font-medium mt-1">
+          <i class="fa-solid fa-circle-check text-green-400 me-2"></i>quantity :
+          <span class="text-gray-500"> {{ productDetails.quantity }}</span>
+        </p>
+        <p class="text-base capitalize font-medium mt-1">
+          <i class="fa-solid fa-circle-check text-green-400 me-2"></i>shipping
+          area :
+          <span class="text-gray-500">all over the world</span>
+        </p>
+        <p class="text-base capitalize font-medium mt-1">
+          <i class="fa-solid fa-circle-check text-green-400 me-2"></i>shipping
+          fee :
+          <span class="text-gray-500">free</span>
+        </p>
+      </div>
+      <button
+        class="capitalize block w-[40%] mt-6 text-white transition-all bg-[#11BD11] hover:bg-[#28c928] px-[20px] text-base py-2 rounded-md border border-[#11BD11] outline-none"
+      >
+        <i class="fa-solid fa-cart-shopping me-1"></i> Add To Cart
+      </button>
+      <div class="mt-5 flex items-center">
+        <p class="text-lg uppercase me-5">share At:</p>
+        <span
+          class="border border-gray-300 me-3 hover:bg-gray-300 transition-all w-[30px] h-[30px] cursor-pointer text-center align-middle"
+        >
+          <i class="fa-brands fa-facebook-f" style="color: #193bc2"></i
+        ></span>
+        <span
+          class="border border-gray-300 me-3 hover:bg-gray-300 transition-all w-[30px] h-[30px] cursor-pointer text-center align-middle"
+        >
+          <i class="fa-brands fa-instagram" style="color: #dc3545"></i
+        ></span>
+        <span
+          class="border border-gray-300 me-3 hover:bg-gray-300 transition-all w-[30px] h-[30px] cursor-pointer text-center align-middle"
+        >
+          <i class="fa-brands fa-twitter" style="color: #193bc2"></i>
+        </span>
+        <span
+          class="border border-gray-300 me-3 hover:bg-gray-300 transition-all w-[30px] h-[30px] cursor-pointer text-center align-middle"
+        >
+          <i class="fa-brands fa-google" style="color: #dc3545"></i
+        ></span>
+      </div>
+    </div>
+  </div>
+</section>
+}

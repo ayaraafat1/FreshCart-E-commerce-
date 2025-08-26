@@ -1,0 +1,39 @@
+.icon{
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%,-50%);
+}
+.link::after{
+content: '';
+position: absolute;
+width: 50px;
+height: 3px;
+background-color: #0AAD0A;
+left: 0;
+top: 100%;
+}
+
+.subscribe-form {
+    input {
+      background: #2e2e2e;
+      border: 1px solid #2e2e2e;
+      padding: 14px 28px;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    button {
+      background: #0AAD0A;
+      padding: 13px 15px;
+      border: 1px solid #0AAD0A;
+
+      i {
+        color: #fff;
+        font-size: 20px;
+        transform: rotate(-6deg);
+      }
+    }
+  }
